@@ -1,7 +1,7 @@
-const express = require('express');
-const morgan = require('morgan');
-const bodyParser = require('body-parser');
-const BooktonicaDatabase = require('./src/booktonica-database');
+const express = require("express");
+const morgan = require("morgan");
+const bodyParser = require("body-parser");
+const BooktonicaDatabase = require("./src/booktonica-database");
 
 /**
  * A way to change the defaults.
@@ -11,14 +11,14 @@ const BooktonicaDatabase = require('./src/booktonica-database');
  */
 const DEFAULT_PORT = 3001;
 const PORT = process.env.PORT || DEFAULT_PORT;
-const DEFAULT_DB_NAME = 'booktonica';
+const DEFAULT_DB_NAME = "booktonica";
 const dbName = process.env.DB_NAME || DEFAULT_DB_NAME;
 const db = new BooktonicaDatabase(dbName);
 
 const api = express();
 
 // Middlewares
-api.use(morgan('tiny'));
+api.use(morgan("tiny"));
 api.use(bodyParser.json());
 
 /**
@@ -26,7 +26,7 @@ api.use(bodyParser.json());
  * which is useful for debugging. You can skip it if you want
  * by removing
  */
-const bodyDebugMiddleware = require('./src/body-debug-middleware');
+const bodyDebugMiddleware = require("./src/body-debug-middleware");
 api.use(bodyDebugMiddleware);
 
 /**
@@ -36,8 +36,13 @@ api.use(bodyDebugMiddleware);
 // const db = new BooktonicaDb(DB_NAME);
 
 // GET /books
-api.get('/books', (_unused, res) =>
+api.get("/books", (_unused, res) =>
   db.getAllBooks().then(books => res.send(books))
+);
+
+// GET /genres
+api.get("/genre", (_unsused, res) =>
+  db.getAllGenres().then(genre => res.send(genre))
 );
 
 // sanityCheck will make sure the DB is working before listening

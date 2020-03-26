@@ -1,4 +1,4 @@
-const pgp = require('pg-promise')();
+const pgp = require("pg-promise")();
 
 /**
  * An object that has methods matching useful database queries.
@@ -14,19 +14,25 @@ class BooktonicaDatabase {
    */
   constructor(name) {
     const connectionString = `postgres://localhost:5432/${name}`;
-    console.log('Postgres DB => ', connectionString);
+    console.log("Postgres DB => ", connectionString);
     this.db = pgp(connectionString);
   }
 
   sanityCheck() {
-    console.log('\tTesting database connection...');
+    console.log("\tTesting database connection...");
     return this.getBooksCount().then(count =>
       console.log(`\t✔️ Found ${count} books.`)
     );
   }
 
   getBooksCount() {
-    return this.db.one('SELECT count(*) FROM books').then(r => r.count);
+    return this.db.one("SELECT count(*) FROM books").then(r => r.count);
+  }
+
+  getAllGenres() {
+    return this.db
+      .result("SELECT DISTINCT genre FROM books")
+      .then(r => r.genre);
   }
 
   getAllBooks() {
