@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: authors; Type: TABLE; Schema: public; Owner: bill
+-- Name: authors; Type: TABLE; Schema: public; Owner: tpl1219_7
 --
 
 CREATE TABLE public.authors (
@@ -34,10 +34,10 @@ CREATE TABLE public.authors (
 );
 
 
-ALTER TABLE public.authors OWNER TO bill;
+ALTER TABLE public.authors OWNER TO tpl1219_7;
 
 --
--- Name: authors_id_seq; Type: SEQUENCE; Schema: public; Owner: bill
+-- Name: authors_id_seq; Type: SEQUENCE; Schema: public; Owner: tpl1219_7
 --
 
 CREATE SEQUENCE public.authors_id_seq
@@ -49,17 +49,17 @@ CREATE SEQUENCE public.authors_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.authors_id_seq OWNER TO bill;
+ALTER TABLE public.authors_id_seq OWNER TO tpl1219_7;
 
 --
--- Name: authors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bill
+-- Name: authors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tpl1219_7
 --
 
 ALTER SEQUENCE public.authors_id_seq OWNED BY public.authors.id;
 
 
 --
--- Name: books; Type: TABLE; Schema: public; Owner: bill
+-- Name: books; Type: TABLE; Schema: public; Owner: tpl1219_7
 --
 
 CREATE TABLE public.books (
@@ -69,14 +69,15 @@ CREATE TABLE public.books (
     author_id integer NOT NULL,
     cover_image_url text,
     summary text,
-    subtitle text
+    subtitle text,
+    genre text
 );
 
 
-ALTER TABLE public.books OWNER TO bill;
+ALTER TABLE public.books OWNER TO tpl1219_7;
 
 --
--- Name: books_id_seq; Type: SEQUENCE; Schema: public; Owner: bill
+-- Name: books_id_seq; Type: SEQUENCE; Schema: public; Owner: tpl1219_7
 --
 
 CREATE SEQUENCE public.books_id_seq
@@ -88,31 +89,31 @@ CREATE SEQUENCE public.books_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.books_id_seq OWNER TO bill;
+ALTER TABLE public.books_id_seq OWNER TO tpl1219_7;
 
 --
--- Name: books_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: bill
+-- Name: books_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: tpl1219_7
 --
 
 ALTER SEQUENCE public.books_id_seq OWNED BY public.books.id;
 
 
 --
--- Name: authors id; Type: DEFAULT; Schema: public; Owner: bill
+-- Name: authors id; Type: DEFAULT; Schema: public; Owner: tpl1219_7
 --
 
 ALTER TABLE ONLY public.authors ALTER COLUMN id SET DEFAULT nextval('public.authors_id_seq'::regclass);
 
 
 --
--- Name: books id; Type: DEFAULT; Schema: public; Owner: bill
+-- Name: books id; Type: DEFAULT; Schema: public; Owner: tpl1219_7
 --
 
 ALTER TABLE ONLY public.books ALTER COLUMN id SET DEFAULT nextval('public.books_id_seq'::regclass);
 
 
 --
--- Data for Name: authors; Type: TABLE DATA; Schema: public; Owner: bill
+-- Data for Name: authors; Type: TABLE DATA; Schema: public; Owner: tpl1219_7
 --
 
 COPY public.authors (id, name, date_of_death, homepage, headshot_url, date_of_birth) FROM stdin;
@@ -126,38 +127,38 @@ COPY public.authors (id, name, date_of_death, homepage, headshot_url, date_of_bi
 
 
 --
--- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: bill
+-- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: tpl1219_7
 --
 
-COPY public.books (id, title, publication_date, author_id, cover_image_url, summary, subtitle) FROM stdin;
-9	Homesick for Another World 	2017-01-17	7	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1469408007l/30079724.jpg	There's something eerily unsettling about Ottessa Moshfegh's stories, something almost dangerous, while also being delightful, and even laugh-out-loud funny. Her characters are all unsteady on their feet in one way or another; they all yearn for connection and betterment, though each in very different ways, but they are often tripped up by their own baser impulses and existential insecurities.	\N
-1	Uncanny Valley	2020-02-14	2	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1559568004l/45186565.jpg	In her mid-twenties, at the height of tech industry idealism, Anna Wienerstuck, broke, and looking for meaning in her work, like any good millennial--left a job in book publishing for the promise of the new digital economy.	A Memoir
-8	Invisible Women	2019-03-12	6	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1550780394l/44083621._SY475_.jpg	Data is fundamental to the modern world. From economic development, to healthcare, to education and public policy, we rely on numbers to allocate resources and make crucial decisions. But because so much data fails to take into account gender, because it treats men as the default and women as atypical, bias and discrimination are baked into our systems. And women pay tremendous costs for this bias, in time, money, and often with their lives.	Data Bias in a World Designed for Men 
-6	Herding Cats 	2018-03-27	3	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1522799608l/35924705._SX318_.jpg	Adjusting to life as a world-famous cartoonist isn't easy. Terrifying deadlines, piles of junk-food wrappers under a glowing computer screen, and an ever-growing horde of pets....umm, never mind--it's pretty much the same.	\N
-2	Fun Home	2007-06-05	4	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1440097020l/26135825._SY475_.jpg	In this graphic memoir, Alison Bechdel charts her fraught relationship with her late father.	A Family Tragicomic 
-3	You Can't Touch My Hair	2016-10-04	5	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1477907975l/29496435._SY475_.jpg	A hilarious and affecting essay collection about race, gender, and pop culture from celebrated stand-up comedian and WNYC podcaster Phoebe Robinson.	And Other Things I Still Have to Explain
-7	 Everything's Trash, But It's Okay 	2018-10-16	5	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1527080689l/38649805.jpg	Robinson's latest essay collection is a call to arms. She tackles a wide range of topics, such as giving feminism a tough-love talk in hopes it can become more intersectional; telling society's beauty standards to kick rocks; and demanding that toxic masculinity close its mouth and legs (enough with the manspreading already!), and get out of the way so true progress can happen.	\N
-5	Adulthood Is a Myth 	2016-03-08	3	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1481219756l/25855506._SX318_.jpg	Are you a special snowflake?\nDo you enjoy networking to advance your career?\nIs adulthood an exciting new challenge for which you feel fully prepared?\n\nUgh. Please go away.	\N
-4	Big Mushy Happy Lump	2017-03-07	3	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1490071048l/30754980._SX318_.jpg	Sarah Andersen's second comics collection picks up right where the first left off - huddled under a pile of blankets avoiding the responsibilities of the real world.	\N
+COPY public.books (id, title, publication_date, author_id, cover_image_url, summary, subtitle, genre) FROM stdin;
+1	Uncanny Valley	2020-02-14	2	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1559568004l/45186565.jpg	In her mid-twenties, at the height of tech industry idealism, Anna Wienerstuck, broke, and looking for meaning in her work, like any good millennial--left a job in book publishing for the promise of the new digital economy.	A Memoir	Biography
+3	You Can't Touch My Hair	2016-10-04	5	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1477907975l/29496435._SY475_.jpg	A hilarious and affecting essay collection about race, gender, and pop culture from celebrated stand-up comedian and WNYC podcaster Phoebe Robinson.	And Other Things I Still Have to Explain	Biography
+2	Fun Home	2007-06-05	4	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1440097020l/26135825._SY475_.jpg	In this graphic memoir, Alison Bechdel charts her fraught relationship with her late father.	A Family Tragicomic 	Graphic novel
+6	Herding Cats 	2018-03-27	3	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1522799608l/35924705._SX318_.jpg	Adjusting to life as a world-famous cartoonist isn't easy. Terrifying deadlines, piles of junk-food wrappers under a glowing computer screen, and an ever-growing horde of pets....umm, never mind--it's pretty much the same.	\N	Comics
+5	Adulthood Is a Myth 	2016-03-08	3	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1481219756l/25855506._SX318_.jpg	Are you a special snowflake?\nDo you enjoy networking to advance your career?\nIs adulthood an exciting new challenge for which you feel fully prepared?\n\nUgh. Please go away.	\N	Comics
+4	Big Mushy Happy Lump	2017-03-07	3	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1490071048l/30754980._SX318_.jpg	Sarah Andersen's second comics collection picks up right where the first left off - huddled under a pile of blankets avoiding the responsibilities of the real world.	\N	Comics
+7	 Everything's Trash, But It's Okay 	2018-10-16	5	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1527080689l/38649805.jpg	Robinson's latest essay collection is a call to arms. She tackles a wide range of topics, such as giving feminism a tough-love talk in hopes it can become more intersectional; telling society's beauty standards to kick rocks; and demanding that toxic masculinity close its mouth and legs (enough with the manspreading already!), and get out of the way so true progress can happen.	\N	Humour
+8	Invisible Women	2019-03-12	6	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1550780394l/44083621._SY475_.jpg	Data is fundamental to the modern world. From economic development, to healthcare, to education and public policy, we rely on numbers to allocate resources and make crucial decisions. But because so much data fails to take into account gender, because it treats men as the default and women as atypical, bias and discrimination are baked into our systems. And women pay tremendous costs for this bias, in time, money, and often with their lives.	Data Bias in a World Designed for Men 	Feminism
+9	Homesick for Another World 	2017-01-17	7	https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1469408007l/30079724.jpg	There's something eerily unsettling about Ottessa Moshfegh's stories, something almost dangerous, while also being delightful, and even laugh-out-loud funny. Her characters are all unsteady on their feet in one way or another; they all yearn for connection and betterment, though each in very different ways, but they are often tripped up by their own baser impulses and existential insecurities.	\N	Fiction
 \.
 
 
 --
--- Name: authors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: bill
+-- Name: authors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tpl1219_7
 --
 
 SELECT pg_catalog.setval('public.authors_id_seq', 7, true);
 
 
 --
--- Name: books_id_seq; Type: SEQUENCE SET; Schema: public; Owner: bill
+-- Name: books_id_seq; Type: SEQUENCE SET; Schema: public; Owner: tpl1219_7
 --
 
 SELECT pg_catalog.setval('public.books_id_seq', 9, true);
 
 
 --
--- Name: authors authors_pkey; Type: CONSTRAINT; Schema: public; Owner: bill
+-- Name: authors authors_pkey; Type: CONSTRAINT; Schema: public; Owner: tpl1219_7
 --
 
 ALTER TABLE ONLY public.authors
@@ -165,7 +166,7 @@ ALTER TABLE ONLY public.authors
 
 
 --
--- Name: books books_pkey; Type: CONSTRAINT; Schema: public; Owner: bill
+-- Name: books books_pkey; Type: CONSTRAINT; Schema: public; Owner: tpl1219_7
 --
 
 ALTER TABLE ONLY public.books
@@ -173,7 +174,7 @@ ALTER TABLE ONLY public.books
 
 
 --
--- Name: books books_author_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: bill
+-- Name: books books_author_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: tpl1219_7
 --
 
 ALTER TABLE ONLY public.books
