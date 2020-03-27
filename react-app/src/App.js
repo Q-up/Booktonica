@@ -18,7 +18,10 @@ class App extends Component {
     //find books, filter, setstate.books as
     //create new list of books
     //filter array by property
-    console.log(genre);
+    const filteredBooks = this.state.books.filter(book => book.genre === genre);
+    //this.setState({books.genre})
+
+    console.log(filteredBooks);
   }
 
   componentDidMount() {
@@ -30,7 +33,7 @@ class App extends Component {
       <div>
         <Filter
           genres={this.state.genres}
-          passSelectedToParent={this.filterByGenre}
+          passSelectedToParent={this.filterByGenre.bind(this)}
         />
         <BookCardList books={this.state.books} />
       </div>
