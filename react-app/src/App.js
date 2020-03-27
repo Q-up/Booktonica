@@ -19,8 +19,7 @@ class App extends Component {
     //create new list of books
     //filter array by property
     const filteredBooks = this.state.books.filter(book => book.genre === genre);
-    //this.setState({books.genre})
-
+    this.setState({ books: filteredBooks });
     console.log(filteredBooks);
   }
 
