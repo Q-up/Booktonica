@@ -30,9 +30,7 @@ class BooktonicaDatabase {
   }
 
   getAllGenres() {
-    return this.db
-      .result("SELECT DISTINCT genre FROM books")
-      .then(r => r.genre);
+    return this.db.any("SELECT DISTINCT genre FROM books");
   }
 
   getAllBooks() {
@@ -43,6 +41,7 @@ class BooktonicaDatabase {
         b.subtitle,
         b.summary,
         b.cover_image_url,
+        b.genre,
         to_char(b.publication_date, 'DD Mon YYYY') as publication_date, 
         a.name AS author_name FROM books b 
         INNER JOIN authors a on a.id = b.author_id

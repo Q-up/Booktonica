@@ -14,3 +14,19 @@ export function getAllBooks() {
     }
   });
 }
+
+export function getAllGenres() {
+  return fetch("/genre", {
+    headers: {
+      Accept: "application/json"
+    }
+  }).then(resp => {
+    if (resp.ok) {
+      return resp.json();
+    } else {
+      throw new Error(
+        `😩 fetch('/genre') failed: Express server responded with HTTP ${resp.status} ${resp.statusText}. (Note: this error is custom to Booktonica and you cannot Google it). Check your Network console for more information about the request and the Express logs for more information about the response.`
+      );
+    }
+  });
+}

@@ -1,16 +1,25 @@
 import React, { Component } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
+
 class Filter extends Component {
-  state = {
-    genres: this.props.genres || []
-  };
+  constructor(props) {
+    super(props);
+    this.state = { selected: "Select Target" };
+    this.handleSelect = this.handleSelect.bind(this);
+  }
+
+  handleSelect(eventKey) {
+    console.log(eventKey);
+    this.props.passSelectedToParent(eventKey);
+  }
+
   render() {
     return (
-      <Dropdown>
-        <Dropdown.Toggle></Dropdown.Toggle>
+      <Dropdown onSelect={this.handleSelect}>
+        <Dropdown.Toggle>Select Genre</Dropdown.Toggle>
         <Dropdown.Menu>
-          {this.state.genres.map(genre => (
-            <Dropdown.Item>{genre.value}</Dropdown.Item>
+          {this.props.genres.map(genre => (
+            <Dropdown.Item eventKey={genre.genre}>{genre.genre}</Dropdown.Item>
           ))}
         </Dropdown.Menu>
       </Dropdown>
