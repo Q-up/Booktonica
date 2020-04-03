@@ -14,6 +14,10 @@ class App extends Component {
     };
   }
 
+  forceUpdate() {
+    this.forceUpdate();
+  }
+
   filterByGenre(genre) {
     //find books, filter, setstate.books as
     //create new list of books
