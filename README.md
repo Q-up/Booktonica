@@ -21,7 +21,7 @@
 
 These filters do not have to work at the same time (that is a challenge below). When a user chooses a filter, it can just "take over" as the only filter. Same goes for sorting. If you are sorting and choose a filter, it's okay if the sorting resets to the default.
 
-### Widget No.1 - Genre Filter
+### Widget No.1 - Genre Filter | status: needs API endpoint
 
 Add a dropdown to filter by genre (at first, you can just hardcode a few genres)
 After it's working, commit and then get the items in the genre search dropdown from the database
@@ -31,7 +31,7 @@ Add a new API endpoint that can give you all the distinct genres in the books ta
 
 Add a radio button to sort by newest publication date, oldest publication date, or title (A-Z). Newest pub date should be the starting sort.
 
-### Widget No. 3 - Reset Filters
+### Widget No. 3 - Reset Filters | status: done
 
 Add a button to reset all the filters and return the view to what it was when loading the page
 

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import "./App.css";
+import Button from "react-bootstrap/Button";
+import Navbar from "react-bootstrap/Navbar";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { getAllBooks, getAllGenres } from "./helpers/booktonica-api-fetcher";
 import BookCardList from "./components/BookCardList";
 import Filter from "./components/Filter";
@@ -14,8 +17,8 @@ class App extends Component {
     };
   }
 
-  forceUpdate() {
-    this.forceUpdate();
+  refreshPage() {
+    window.location.reload(false);
   }
 
   filterByGenre(genre) {
@@ -34,10 +37,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Filter
-          genres={this.state.genres}
-          passSelectedToParent={this.filterByGenre.bind(this)}
-        />
+        <Navbar>
+          <Filter
+            genres={this.state.genres}
+            passSelectedToParent={this.filterByGenre.bind(this)}
+          />
+          <Button variant='light' onClick={this.refreshPage.bind(this)}>
+            Reset
+          </Button>
+        </Navbar>
         <BookCardList books={this.state.books} />
       </div>
     );

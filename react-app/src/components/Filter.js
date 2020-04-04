@@ -16,7 +16,7 @@ class Filter extends Component {
   render() {
     return (
       <Dropdown onSelect={this.handleSelect}>
-        <Dropdown.Toggle>Select Genre</Dropdown.Toggle>
+        <Dropdown.Toggle variant='light'>Select Genre</Dropdown.Toggle>
         <Dropdown.Menu>
           {this.props.genres.map(genre => (
             <Dropdown.Item eventKey={genre.genre}>{genre.genre}</Dropdown.Item>
