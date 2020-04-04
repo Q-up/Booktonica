@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import "./App.css";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
+import InputGroup from "react-bootstrap/InputGroup";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { getAllBooks, getAllGenres } from "./helpers/booktonica-api-fetcher";
 import BookCardList from "./components/BookCardList";
 import Filter from "./components/Filter";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Form } from "reactstrap";
 
 class App extends Component {
   constructor(props) {
@@ -19,6 +21,12 @@ class App extends Component {
 
   refreshPage() {
     window.location.reload(false);
+  }
+
+  filterByTitle() {
+    const sortedBooks = this.state.books.sort();
+    this.setState({ books: sortedBooks });
+    console.log(sortedBooks);
   }
 
   filterByGenre(genre) {
@@ -45,6 +53,18 @@ class App extends Component {
           <Button variant='light' onClick={this.refreshPage.bind(this)}>
             Reset
           </Button>
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Radio onClick={this.filterByTitle.bind(this)} />
+              Sort by Title A-Z
+            </InputGroup.Prepend>
+          </InputGroup>
+          <InputGroup>
+            <InputGroup.Prepend>
+              <InputGroup.Radio onClick={this.filterByTitle.bind(this)} />
+              Sort by Title Z-A
+            </InputGroup.Prepend>
+          </InputGroup>
         </Navbar>
         <BookCardList books={this.state.books} />
       </div>
