@@ -76,13 +76,19 @@ class App extends Component {
           </Button>
           <InputGroup>
             <InputGroup.Prepend>
-              <InputGroup.Radio onClick={this.filterByTitleAZ.bind(this)} />
+              <InputGroup.Radio
+                onClick={this.filterByTitleAZ.bind(this)}
+                name='sortBook'
+              />
               Sort by Title A-Z
             </InputGroup.Prepend>
           </InputGroup>
           <InputGroup>
             <InputGroup.Prepend>
-              <InputGroup.Radio onClick={this.filterByTitleZA.bind(this)} />
+              <InputGroup.Radio
+                onClick={this.filterByTitleZA.bind(this)}
+                name='sortBook'
+              />
               Sort by Title Z-A
             </InputGroup.Prepend>
           </InputGroup>
