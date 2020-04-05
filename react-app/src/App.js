@@ -7,10 +7,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import {
   getAllBooks,
   getAllGenres,
-  getBooksByGenre
+  getBooksByGenre,
+  searchByBook
 } from "./helpers/booktonica-api-fetcher";
 import BookCardList from "./components/BookCardList";
 import Filter from "./components/Filter";
+import Search from "./components/Search";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Form } from "reactstrap";
 
@@ -19,13 +21,18 @@ class App extends Component {
     super(props);
     this.state = {
       books: [],
-      genres: []
+      genres: [],
+      search: "Search Books..."
     };
   }
 
   refreshPage() {
     window.location.reload(false);
   }
+
+  searchBookName = bookName => {
+    searchByBook(bookName).then(books => this.setState({ books: books }));
+  };
 
   filterByTitleAZ() {
     const sortedBooks = this.state.books.sort((a, b) =>
@@ -75,6 +82,10 @@ class App extends Component {
               Sort by Title Z-A
             </InputGroup.Prepend>
           </InputGroup>
+          <Search
+            searchBookName={this.searchBookName}
+            reset={this.resetBookList.bind(this)}
+          />
         </Navbar>
         <BookCardList books={this.state.books} />
       </div>

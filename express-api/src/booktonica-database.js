@@ -41,18 +41,37 @@ class BooktonicaDatabase {
 
   getSortedBooksZA() {}
 
+  searchByBook(book) {
+    return this.db.any(
+      `SELECT
+          b.id,
+          b.title,
+          b.subtitle,
+          b.summary,
+          b.cover_image_url,
+          TO_CHAR(b.publication_date, 'DD Mon YYYY') AS publication_date,
+          a.name AS author_name
+        FROM books b
+        INNER JOIN authors a
+                ON a.id = b.author_id
+        WHERE lower(b.title) LIKE '%${book}%'
+        -- To add search by author name, uncomment:
+           -- OR lower(a.name)  LIKE '%${book}%'`
+    );
+  }
+
   getAllBooks() {
     return this.db.any(
       `SELECT 
-        b.id,
-        b.title,
-        b.subtitle,
-        b.summary,
-        b.cover_image_url,
-        b.genre,
-        to_char(b.publication_date, 'DD Mon YYYY') as publication_date, 
-        a.name AS author_name FROM books b 
-        INNER JOIN authors a on a.id = b.author_id
+          b.id,
+          b.title,
+          b.subtitle,
+          b.summary,
+          b.cover_image_url,
+          b.genre,
+          TO_CHAR(b.publication_date, 'DD Mon YYYY') AS publication_date,
+          a.name AS author_name FROM books b
+        INNER JOIN authors a ON a.id = b.author_id
         ORDER BY b.publication_date DESC`
     );
   }

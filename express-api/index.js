@@ -50,6 +50,12 @@ api.get("/books/genre/:genre", (req, res) =>
   db.getBooksByGenre(req.params.genre).then(books => res.send(books))
 );
 
+//GET /books/search
+api.get("/books/search/:book", (req, res) => {
+  const book = req.params.book;
+  db.searchByBook(book).then(book => res.send(book));
+});
+
 // sanityCheck will make sure the DB is working before listening
 db.sanityCheck().then(() => {
   api.listen(PORT, () => {
