@@ -15,8 +15,8 @@ export function getAllBooks() {
   });
 }
 
-export function getBooksByGenre() {
-  return fetch("/books/genre", {
+export function getBooksByGenre(genre) {
+  return fetch(`/books/genre/${genre}`, {
     headers: {
       Accept: "application/json"
     }

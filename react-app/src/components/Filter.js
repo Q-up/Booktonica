@@ -13,14 +13,20 @@ class Filter extends Component {
     this.props.passSelectedToParent(eventKey);
   }
 
+  myDropDownItem(data) {
+    return (
+      <Dropdown.Item key={data} eventKey={data}>
+        {data}
+      </Dropdown.Item>
+    );
+  }
+
   render() {
     return (
       <Dropdown onSelect={this.handleSelect}>
         <Dropdown.Toggle variant='light'>Select Genre</Dropdown.Toggle>
         <Dropdown.Menu>
-          {this.props.genres.map(genre => (
-            <Dropdown.Item eventKey={genre.genre}>{genre.genre}</Dropdown.Item>
-          ))}
+          {this.props.genres.map(genre => this.myDropDownItem(genre.genre))}
         </Dropdown.Menu>
       </Dropdown>
     );

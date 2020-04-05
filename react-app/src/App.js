@@ -45,17 +45,7 @@ class App extends Component {
 
   filterByGenre(genre) {
     getBooksByGenre(genre).then(books => this.setState({ books: books }));
-    //find books, filter, setstate.books as
-    //create new list of books
-    //filter array by property
-    // const filteredBooks = this.state.books.filter(book => book.genre === genre);
-    // this.setState({ books: filteredBooks });
-    // console.log(filteredBooks);
   }
-
-  // componentDidUpdate() {
-  //   getBooksByGenre().then(books => this.setState({ books: books }));
-  // }
 
   componentDidMount() {
     getAllBooks().then(books => this.setState({ books: books }));

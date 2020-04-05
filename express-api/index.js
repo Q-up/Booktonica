@@ -46,8 +46,8 @@ api.get("/genre", (_unsused, res) =>
 );
 
 // GET /booksbygenre
-api.get("/books/genre", (req, res) =>
-  db.getBooksByGenre(req, res).then(books => res.send(books))
+api.get("/books/genre/:genre", (req, res) =>
+  db.getBooksByGenre(req.params.genre).then(books => res.send(books))
 );
 
 // sanityCheck will make sure the DB is working before listening
