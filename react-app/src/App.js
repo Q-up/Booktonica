@@ -30,6 +30,10 @@ class App extends Component {
     window.location.reload(false);
   }
 
+  resetBookList() {
+    getAllBooks().then(books => this.setState({ books: books }));
+  }
+
   searchBookName = bookName => {
     searchByBook(bookName).then(books => this.setState({ books: books }));
   };
@@ -55,7 +59,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    getAllBooks().then(books => this.setState({ books: books }));
+    this.resetBookList();
     getAllGenres().then(genres => this.setState({ genres: genres }));
   }
 
