@@ -45,6 +45,11 @@ api.get("/genre", (_unsused, res) =>
   db.getAllGenres().then(genre => res.send(genre))
 );
 
+// GET /booksbygenre
+api.get("/books/genre", (req, res) =>
+  db.getBooksByGenre(req, res).then(books => res.send(books))
+);
+
 // sanityCheck will make sure the DB is working before listening
 db.sanityCheck().then(() => {
   api.listen(PORT, () => {

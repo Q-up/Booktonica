@@ -4,7 +4,11 @@ import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import InputGroup from "react-bootstrap/InputGroup";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { getAllBooks, getAllGenres } from "./helpers/booktonica-api-fetcher";
+import {
+  getAllBooks,
+  getAllGenres,
+  getBooksByGenre
+} from "./helpers/booktonica-api-fetcher";
 import BookCardList from "./components/BookCardList";
 import Filter from "./components/Filter";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,25 +27,41 @@ class App extends Component {
     window.location.reload(false);
   }
 
-  filterByTitle() {
-    const sortedBooks = this.state.books.sort();
+  filterByTitleAZ() {
+    const sortedBooks = this.state.books.sort((a, b) =>
+      a.title > b.title ? 1 : -1
+    );
+    this.setState({ books: sortedBooks });
+    console.log(sortedBooks);
+  }
+
+  filterByTitleZA() {
+    const sortedBooks = this.state.books.sort((a, b) =>
+      a.title < b.title ? 1 : -1
+    );
     this.setState({ books: sortedBooks });
     console.log(sortedBooks);
   }
 
   filterByGenre(genre) {
+    getBooksByGenre(genre).then(books => this.setState({ books: books }));
     //find books, filter, setstate.books as
     //create new list of books
     //filter array by property
-    const filteredBooks = this.state.books.filter(book => book.genre === genre);
-    this.setState({ books: filteredBooks });
-    console.log(filteredBooks);
+    // const filteredBooks = this.state.books.filter(book => book.genre === genre);
+    // this.setState({ books: filteredBooks });
+    // console.log(filteredBooks);
   }
+
+  // componentDidUpdate() {
+  //   getBooksByGenre().then(books => this.setState({ books: books }));
+  // }
 
   componentDidMount() {
     getAllBooks().then(books => this.setState({ books: books }));
     getAllGenres().then(genres => this.setState({ genres: genres }));
   }
+
   render() {
     return (
       <div>
@@ -55,13 +75,13 @@ class App extends Component {
           </Button>
           <InputGroup>
             <InputGroup.Prepend>
-              <InputGroup.Radio onClick={this.filterByTitle.bind(this)} />
+              <InputGroup.Radio onClick={this.filterByTitleAZ.bind(this)} />
               Sort by Title A-Z
             </InputGroup.Prepend>
           </InputGroup>
           <InputGroup>
             <InputGroup.Prepend>
-              <InputGroup.Radio onClick={this.filterByTitle.bind(this)} />
+              <InputGroup.Radio onClick={this.filterByTitleZA.bind(this)} />
               Sort by Title Z-A
             </InputGroup.Prepend>
           </InputGroup>
@@ -73,17 +93,3 @@ class App extends Component {
 }
 
 export default App;
-
-// <form onSubmit={this.handleSubmit}>
-//           <label>
-//             Select genre
-//             <select genres={this.state.genres} onChange={this.handleChange}>
-//               {genres.map(genre => (
-//                 <option key={genre.id} genre={this.props.genres}>
-//                   {this.props.genres}
-//                 </option>
-//               ))}{" "}
-//             </select>
-//           </label>
-//           <input type='submit' value='Submit' />
-//         </form>

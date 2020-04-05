@@ -33,6 +33,16 @@ class BooktonicaDatabase {
     return this.db.any("SELECT DISTINCT genre FROM books");
   }
 
+  getBooksByGenre(req, res) {
+    return this.db.any("SELECT * FROM books WHERE genre = $1", [
+      req.body.genre
+    ]);
+  }
+
+  getSortedBooksAZ() {}
+
+  getSortedBooksZA() {}
+
   getAllBooks() {
     return this.db.any(
       `SELECT 
