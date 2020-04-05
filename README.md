@@ -27,7 +27,7 @@ Add a dropdown to filter by genre (at first, you can just hardcode a few genres)
 After it's working, commit and then get the items in the genre search dropdown from the database
 Add a new API endpoint that can give you all the distinct genres in the books table
 
-### Widget No. 2 - Sorting Radio Buttons
+### Widget No. 2 - Sorting Radio Buttons | status: done | improvements: button stays clicked after selecting another
 
 Add a radio button to sort by newest publication date, oldest publication date, or title (A-Z). Newest pub date should be the starting sort.
 
