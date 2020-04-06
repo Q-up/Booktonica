@@ -1,4 +1,4 @@
-## Final App Assessment
+## Welcome to Bootonica!
 
 ### Setup Instructions
 
